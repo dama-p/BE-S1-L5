@@ -55,13 +55,13 @@ include __DIR__ . '/includes/initial.php';
         foreach ($books as $row) { ?>
 
 <div class="card col-5 col-md-3 col-lg-2 m-3">
-  <img src="..." class="card-img-top" alt="...">
+  <img  src="<?= $row['cover'] ?>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><?=  "$row[titolo]" ?></h5>
     <p class="card-text"><?=  "$row[autore] - $row[anno_pubblicazione] " ?></p>
-    <a href="/FSD%20IFOA/U1-S1-L3/dettagli.php?id=<?= $row['id'] ?>" class="btn btn-primary">Dettagli</a>
-    <a href="/FSD%20IFOA/U1-S1-L3/edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a>
-                <a href="/FSD%20IFOA/U1-S1-L3/elimina.php?id=<?= $row['id'] ?>" class="btn btn-danger">Elimina</a>
+    <a href="/FSD%20IFOA/BE-S1-L5/dettagli.php?id=<?= $row['id'] ?>" class="btn btn-primary">Dettagli</a>
+    <a href="/FSD%20IFOA/BE-S1-L5/edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a>
+                <a href="/FSD%20IFOA/BE-S1-L5/elimina.php?id=<?= $row['id'] ?>" class="btn btn-danger">Elimina</a>
   </div>
 </div>
             
