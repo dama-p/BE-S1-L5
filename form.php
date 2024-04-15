@@ -1,0 +1,113 @@
+<?php 
+include __DIR__ . '/includes/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $titolo = $_POST['titolo'];
+    $autore = $_POST['autore'];
+    $anno_pubblicazione = $_POST['anno_pubblicazione'];
+    $genere = $_POST['genere'];
+    
+
+    $errors = [];
+
+     // validare i dati
+
+    if (strlen($titolo) > 30) {
+        $errors['titolo'][] = 'Titolo non valido';
+    }
+
+    if (strlen($autore) > 30) {
+        $errors['autore'][] = 'Autore non trovato';
+    } 
+    
+    if (strlen($anno_pubblicazione) > 4) {
+        $errors['anno_pubblicazione'][] = 'Anno non valido';
+    }
+
+    if (strlen($genere) > 30) {
+      $errors['genere'][] = 'Genere non valido';
+  } 
+
+/*     echo '<pre>' . print_r($errors, true) . '</pre>'; */
+    
+  if ($errors == []) {
+
+    $stmt = $pdo -> prepare("INSERT INTO libri (titolo, autore, anno_pubblicazione, genere) VALUES (:titolo, :autore, :anno_pubblicazione, :genere)");
+$stmt->execute([
+    "titolo" =>  $titolo,
+    "autore" =>  $autore,
+    "anno_pubblicazione" => $anno_pubblicazione,
+    "genere" => $genere,
+]);
+
+
+
+};
+
+
+
+
+} ?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      #box {
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        border: 1px solid grey;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      body {
+        background-color: aquamarine ;
+      }
+      form {
+        background-color: aquamarine ;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <form style="width: 500px" action="" method="post">   
+        <div class="mb-3">
+          <label for="titolo" class="form-label">Titolo libro</label>
+          <input type="text" class="form-control" name="titolo" id="titolo" />
+        </div>
+        <div class="mb-3">
+          <label for="autore" class="form-label">Autore del libro</label>
+          <input type="text" class="form-control" name="autore" id="autore" />
+        </div>
+        <div class="mb-3">
+          <label for="anno_pubblicazione" class="form-label">Anno di uscita</label>
+          <input type="number" class="form-control" name="anno_pubblicazione" id="anno_pubblicazione" />
+        </div>
+        <div class="mb-3">
+          <label for="genere" class="form-label">Genere del libro</label>
+          <input type="text" class="form-control" name="genere" id="genere" />
+        </div>
+ 
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+      </form>
+    </div>
+    <?php
+
+include __DIR__ . '/includes/end.php';
