@@ -1,5 +1,6 @@
 <?php 
 include __DIR__ . '/includes/db.php';
+include __DIR__ . '/includes/initial.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titolo = $_POST['titolo'];
@@ -13,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
      // validare i dati
 
-    if (strlen($titolo) > 30) {
+    if (strlen($titolo) > 200) {
         $errors['titolo'][] = 'Titolo non valido';
     }
 
-    if (strlen($autore) > 30) {
+    if (strlen($autore) > 100) {
         $errors['autore'][] = 'Autore non trovato';
     } 
     
@@ -25,9 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['anno_pubblicazione'][] = 'Anno non valido';
     }
 
-    if (strlen($genere) > 30) {
+    if (strlen($genere) > 50) {
       $errors['genere'][] = 'Genere non valido';
   } 
+
+  if (strlen($cover) > 1000) {
+    $errors['cover'][] = 'Cover non valida';
+} 
 
 /*     echo '<pre>' . print_r($errors, true) . '</pre>'; */
     
@@ -54,37 +59,9 @@ $stmt->execute([
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <title>Document</title>
-    <style>
-      #box {
-        display: flex;
-        justify-content: center;
-        margin-top: 100px;
-        border: 1px solid grey;
-        border-radius: 10px;
-        padding: 10px;
-      }
-      body {
-        background-color: aquamarine ;
-      }
-      form {
-        background-color: aquamarine ;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="box">
+
+
+    <div class="d-flex justify-content-center mx-auto mt-4">
       <form style="width: 500px" action="" method="post">   
         <div class="mb-3">
           <label for="titolo" class="form-label">Titolo libro</label>
