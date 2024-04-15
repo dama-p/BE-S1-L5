@@ -4,7 +4,7 @@ include __DIR__ . '/includes/db.php';
 $search = $_GET['search'] ?? '';
 
 $page = $_GET["page"] ?? 1; // numero di pagina
-$per_page = $_GET["per_page"] ?? 10; // definisco quanti elementi per pagina si avranno
+$per_page = $_GET["per_page"] ?? 10; // elementi per pagina
 $per_page = $per_page > 10 ? 10 : $per_page; // limito gli elementi per pagina
 $offset = ($page-1) * $per_page;
 
@@ -19,9 +19,8 @@ $stmt->execute([
    "per_page" => $per_page,
 ]);
 
-$books = $stmt->fetchAll(); // Trasforma i risultati in un array normale
-
-$stmt = $pdo->prepare("SELECT COUNT(*) AS num_of_books FROM libri WHERE CONCAT(titolo, autore) LIKE :search"); // Contiami tutti gli utenti per poter calcolare le pagine
+$books = $stmt->fetchAll(); 
+$stmt = $pdo->prepare("SELECT COUNT(*) AS num_of_books FROM libri WHERE CONCAT(titolo, autore) LIKE :search");
 $stmt->execute([
     'search' => "%$search%",
 ]);
@@ -32,9 +31,7 @@ $tot_pages = ceil($num_of_books / $per_page);
 include __DIR__ . '/includes/initial.php';
 
 
-
 ?>
-
 
     <h2 class="text-center text-white">Welcome!</h2>
     <h4 class="text-center title mb-3">Look for your favourite book in our archives!</h4>
@@ -81,8 +78,6 @@ include __DIR__ . '/includes/initial.php';
     </div>
 
   </div>
-
-
 
 </div>
             

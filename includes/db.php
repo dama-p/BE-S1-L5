@@ -1,11 +1,5 @@
 <?php
-// se ci sono stati inviati dei dati
-// allora validarli e fare tutto il resto (tra cui salvare i dati nel database)
-// se NON sono validi rimaniamo in questa pagina e ripresentiamo il form all'utente
-// se sono validi ridirezionamo l'utente su una pagina diversa con un messaggio di successo
 
-
-// connessione al database
 $host = "localhost";
 $db = "gestione_libreria";
 $user = "root";
@@ -22,5 +16,5 @@ $options = [
 
 ];
 
-// comando che connette al databse
+
 $pdo = new PDO($dsn, $user, $pass, $options);

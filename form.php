@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // VALIDAZIONE DEI DATI
 
-
     if (empty($titolo)) {
         $errors['titolo'][] = 'Not a valid title';
     }
