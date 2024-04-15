@@ -58,7 +58,8 @@ include __DIR__ . '/includes/initial.php';
   <img  src="<?= $row['cover'] ?>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><?=  "$row[titolo]" ?></h5>
-    <p class="card-text"><?=  "$row[autore] - $row[anno_pubblicazione] " ?></p>
+    <p class="card-text"><?=  "$row[autore] " ?></p>
+    <p class="card-text"><?=  "$row[genere] - $row[anno_pubblicazione] " ?></p>
     <a href="/FSD%20IFOA/BE-S1-L5/dettagli.php?id=<?= $row['id'] ?>" class="btn btn-primary">Dettagli</a>
     <a href="/FSD%20IFOA/BE-S1-L5/edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a>
                 <a href="/FSD%20IFOA/BE-S1-L5/elimina.php?id=<?= $row['id'] ?>" class="btn btn-danger">Elimina</a>

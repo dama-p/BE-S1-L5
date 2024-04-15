@@ -23,6 +23,10 @@ include __DIR__ . '/includes/initial.php'; ?>
         <input type="text" class="form-control" id="autore" name="autore" value="<?= $row['autore'] ?>">
     </div>
     <div class="mb-3">
+        <label for="genere" class="form-label">genere</label>
+        <input type="text" class="form-control" id="genere" name="genere" value="<?= $row['genere'] ?>">
+    </div>
+    <div class="mb-3">
         <label for="anno_pubblicazione" class="form-label">anno_pubblicazione</label>
         <input type="number" class="form-control" id="anno_pubblicazione" name="anno_pubblicazione" value="<?= $row['anno_pubblicazione'] ?>">
     </div>
