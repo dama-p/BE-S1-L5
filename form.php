@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $autore = $_POST['autore'];
     $anno_pubblicazione = $_POST['anno_pubblicazione'];
     $genere = $_POST['genere'];
+    $cover = $_POST['cover'];
     
 
     $errors = [];
@@ -32,12 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
   if ($errors == []) {
 
-    $stmt = $pdo -> prepare("INSERT INTO libri (titolo, autore, anno_pubblicazione, genere) VALUES (:titolo, :autore, :anno_pubblicazione, :genere)");
+    $stmt = $pdo -> prepare("INSERT INTO libri (titolo, autore, anno_pubblicazione, genere, cover) VALUES (:titolo, :autore, :anno_pubblicazione, :genere, :cover)");
 $stmt->execute([
     "titolo" =>  $titolo,
     "autore" =>  $autore,
     "anno_pubblicazione" => $anno_pubblicazione,
     "genere" => $genere,
+    "cover" => $cover,
 ]);
 
 
@@ -99,6 +101,10 @@ $stmt->execute([
         <div class="mb-3">
           <label for="genere" class="form-label">Genere del libro</label>
           <input type="text" class="form-control" name="genere" id="genere" />
+        </div>
+        <div class="mb-3">
+          <label for="genere" class="form-label">URL immagine di copertina</label>
+          <input type="text" class="form-control" name="cover" id="cover" />
         </div>
  
 
