@@ -36,14 +36,15 @@ include __DIR__ . '/includes/initial.php';
 ?>
 
 
-    <h1 class="text-center">Benvenuto! Esplora la nostra libreria:</h1>
+    <h2 class="text-center text-white">Welcome!</h2>
+    <h4 class="text-center title mb-3">Look for your favourite book in our archives!</h4>
 
     <form class="row gap-3">
         <div class="col">
-            <input type="text" name="search" class="form-control" placeholder="Cerca un libro">
+            <input type="text" name="search" class="form-control" placeholder="Type your title here">
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Cerca</button>
+            <button type="submit" class="btn btn-primary mb-3">Search</button>
         </div>
     </form>
 
@@ -54,16 +55,35 @@ include __DIR__ . '/includes/initial.php';
     <div class="row justify-content-center"><?php
         foreach ($books as $row) { ?>
 
-<div class="card col-5 col-md-3 col-lg-2 m-3">
-  <img  src="<?= $row['cover'] ?>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><?=  "$row[titolo]" ?></h5>
+<div class="card col-5 col-md-3 col-lg-2 m-3 d-flex flex-column pt-2">
+
+<img  src="<?= $row['cover'] ?>" class="card-img-top img-fluid" alt="cover" style="height:270px">
+
+<div class="card-body d-flex flex-column">
+
+<h5 class="card-title"><?=  "$row[titolo]" ?></h5>
     <p class="card-text"><?=  "$row[autore] " ?></p>
     <p class="card-text"><?=  "$row[genere] - $row[anno_pubblicazione] " ?></p>
-    <a href="/FSD%20IFOA/BE-S1-L5/dettagli.php?id=<?= $row['id'] ?>" class="btn btn-primary">Details</a>
+
+<div class="row gap-2 mt-auto"> <div class="col d-flex justify-content-around">
+
+<a href="/FSD%20IFOA/BE-S1-L5/dettagli.php?id=<?= $row['id'] ?>" class="btn btn-primary">Details</a>
     <a href="/FSD%20IFOA/BE-S1-L5/edit.php?id=<?= $row['id'] ?>" class="btn btn-warning">Edit</a>
-                <a href="/FSD%20IFOA/BE-S1-L5/elimina.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+
+        <a href="/FSD%20IFOA/BE-S1-L5/elimina.php?id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
+    
+        </div>
+
+    </div>
+
   </div>
+
+
+
 </div>
             
             <?php
@@ -72,7 +92,7 @@ include __DIR__ . '/includes/initial.php';
 
 
     <nav>
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center mt-4">
             <li class="page-item<?= $page == 1 ? ' disabled' : '' ?>">
                 <a
                     class="page-link"

@@ -10,6 +10,8 @@ $row = $stmt->fetch();
 
 include __DIR__ . '/includes/initial.php'; ?>
 
+<div style="max-width: 70%;" class="mx-auto">
+
 <h1 class="text-center">Edit</h1>
 
 <form action="/FSD%20IFOA/BE-S1-L5/edit-logic.php" method="POST" novalidate>
@@ -36,6 +38,6 @@ include __DIR__ . '/includes/initial.php'; ?>
     </div>
     <button type="submit" class="btn btn-primary">Save changes</button>
 </form>
-
+</div>
 
 <?php include __DIR__ . '/includes/end.php';
