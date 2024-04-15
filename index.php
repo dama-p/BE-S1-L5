@@ -86,7 +86,7 @@ include __DIR__ . '/includes/initial.php';
     </div>
 
 
-    <nav>
+    <nav style="background-color: transparent;">
     <ul class="pagination justify-content-center mt-4">
             <li class="page-item<?= $page == 1 ? ' disabled' : '' ?>">
                 <a
