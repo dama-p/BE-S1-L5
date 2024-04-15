@@ -12,31 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
-     // validare i dati
+    // VALIDAZIONE DEI DATI
 
-    if (strlen($titolo) > 200) {
-        $errors['titolo'][] = 'Titolo non valido';
+
+    if (empty($titolo)) {
+        $errors['titolo'][] = 'Not a valid title';
     }
 
-    if (strlen($autore) > 100) {
-        $errors['autore'][] = 'Autore non trovato';
+    if (empty($autore)) {
+        $errors['autore'][] = 'Not a valid author';
     } 
     
-    if (strlen($anno_pubblicazione) > 4) {
-        $errors['anno_pubblicazione'][] = 'Anno non valido';
+    if (empty($anno_pubblicazione)) {
+        $errors['anno_pubblicazione'][] = 'Year not valid';
     }
 
-    if (strlen($genere) > 50) {
-      $errors['genere'][] = 'Genere non valido';
+    if (empty($genere)) {
+      $errors['genere'][] = 'Not a valid genre';
   } 
 
   if (strlen($cover) > 1000) {
-    $errors['cover'][] = 'Cover non valida';
+    $errors['cover'][] = 'Not a valid image';
 } 
 
 /*     echo '<pre>' . print_r($errors, true) . '</pre>'; */
     
-  if ($errors == []) {
+  if (empty($errors)) {
 
     $stmt = $pdo -> prepare("INSERT INTO libri (titolo, autore, anno_pubblicazione, genere, cover) VALUES (:titolo, :autore, :anno_pubblicazione, :genere, :cover)");
 $stmt->execute([
@@ -47,41 +48,41 @@ $stmt->execute([
     "cover" => $cover,
 ]);
 
-
+header("Location: /FSD%20IFOA/BE-S1-L5/index.php/");
 
 };
 
+}
 
-
-
-} ?>
-
-
-
-
-
+?>
 
     <div class="d-flex justify-content-center mx-auto mt-4">
-      <form style="width: 500px" action="" method="post">   
+      <form style="width: 500px" action="" method="post" novalidate>   
         <div class="mb-3">
           <label for="titolo" class="form-label">Titolo libro</label>
           <input type="text" class="form-control" name="titolo" id="titolo" />
+          <div style="color:red"><?= $erros["titolo"] ?? "" ?> </div>
+
         </div>
         <div class="mb-3">
           <label for="autore" class="form-label">Autore del libro</label>
           <input type="text" class="form-control" name="autore" id="autore" />
+          <div style="color:red"><?= $erros["autore"] ?? "" ?> </div>
         </div>
         <div class="mb-3">
           <label for="anno_pubblicazione" class="form-label">Anno di uscita</label>
           <input type="number" class="form-control" name="anno_pubblicazione" id="anno_pubblicazione" />
+          <div style="color:red"><?= $erros["anno_pubblicazione"] ?? "" ?> </div>
         </div>
         <div class="mb-3">
           <label for="genere" class="form-label">Genere del libro</label>
           <input type="text" class="form-control" name="genere" id="genere" />
+          <div style="color:red"><?= $erros["genere"] ?? "" ?> </div>
         </div>
         <div class="mb-3">
           <label for="genere" class="form-label">URL immagine di copertina</label>
           <input type="text" class="form-control" name="cover" id="cover" />
+          <div style="color:red"><?= $erros["cover"] ?? "" ?> </div>
         </div>
  
 

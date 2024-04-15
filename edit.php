@@ -1,7 +1,6 @@
 <?php 
 include __DIR__ . '/includes/db.php';
 
-// SELECT DI TUTTE LE RIGHE A PARTIRE DALL'ID DELL'URL (che abbiamo passato con link dalla pagina searchbar)
 $stmt = $pdo->prepare('SELECT * FROM libri WHERE id = ?');
 $stmt->execute([$_GET["id"]]);
 
